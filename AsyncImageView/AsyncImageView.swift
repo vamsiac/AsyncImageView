@@ -14,11 +14,7 @@ typealias DownloadCompletionBlock = (UIImage?) -> Void
 class AsyncImageView: UIImageView {
     
     /// Returns the cached image or nil if connection fails.
-    var completionHandler:(DownloadCompletionBlock)? {
-        didSet {
-            
-        }
-    }
+    var completionHandler:(DownloadCompletionBlock)?
     
     /// Sets the cache policy for the image download request. Default values is .returnCacheDataElseLoad.
     var cachePolicy: URLRequest.CachePolicy = .returnCacheDataElseLoad
@@ -77,11 +73,6 @@ class AsyncImageView: UIImageView {
                 self.imageURLString = escapedString
             }
         }
-    }
-    
-    /// Loads the image from URL and set the imageview image.
-    func loadImage(fromURL url: URL) {
-        self.imageURL = url
     }
     
     /// Convinience completion handler function to get the image.
@@ -180,7 +171,6 @@ private class AsyncImageCache: NSObject, FileManagerDelegate {
         } else {
             return nil
         }
-        
     }
     
     private func imageSavePath(url: URL) -> URL {
@@ -198,11 +188,10 @@ private class AsyncImageCache: NSObject, FileManagerDelegate {
     }
 }
 
-/// This extension is convenient for loading images asynchronously with out needing to subclass from AsyncImageView.
+/// UIImageView extension for loading images asynchronously with out needing to subclass.
 extension UIImageView {
     /// Loads the image from URL and set the imageview image.
-    func loadImage(fromURL url: URL,into imageView: UIImageView) {
-        
+    func loadImageAsync(fromURL url: URL) {
         AsyncImageView().loadImageWithURL(url) { (image) in
             guard let downloadedImage = image else {
                 return
@@ -217,3 +206,40 @@ extension UIImageView {
         }
     }
 }
+
+/// UIButton extension for loading images asynchronously with out needing to subclass.
+extension UIButton {
+    /// Loads the image from URL and set the imageview image.
+    func loadBackgrounImageAsync(fromURL url: URL, for state: UIControlState) {
+        AsyncImageView().loadImageWithURL(url) { (image) in
+            guard let downloadedImage = image else {
+                return
+            }
+            
+            DispatchQueue.main.async (execute: {
+                //Ignore if image is already assigned
+                if self.currentImage != image {
+                    self.setBackgroundImage(downloadedImage, for: state)
+                }
+            })
+        }
+    }
+    
+    /// Loads the image from URL and set the imageview image.
+    func loadImageAsync(fromURL url: URL, for state: UIControlState) {
+        AsyncImageView().loadImageWithURL(url) { (image) in
+            guard let downloadedImage = image else {
+                return
+            }
+            
+            DispatchQueue.main.async (execute: {
+                //Ignore if image is already assigned
+                if self.currentImage != image {
+                    self.setImage(downloadedImage, for: state)
+                }
+            })
+        }
+    }
+
+}
+
