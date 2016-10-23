@@ -14,7 +14,11 @@ typealias DownloadCompletionBlock = (UIImage?) -> Void
 class AsyncImageView: UIImageView {
     
     /// Returns the cached image or nil if connection fails.
-    var completionHandler:((UIImage?)->Void)?
+    var completionHandler:(DownloadCompletionBlock)? {
+        didSet {
+            
+        }
+    }
     
     /// Sets the cache policy for the image download request. Default values is .returnCacheDataElseLoad.
     var cachePolicy: URLRequest.CachePolicy = .returnCacheDataElseLoad
@@ -91,7 +95,7 @@ class AsyncImageView: UIImageView {
     }
     
     /// loads the image, save the image to cache, returns image in completion handler,
-    private func loadImageWithURL(_ url: URL, completion: DownloadCompletionBlock?) {
+    fileprivate func loadImageWithURL(_ url: URL, completion: DownloadCompletionBlock?) {
         
         if let image = AsyncImageCache.imageCache.loadImageFromCache(url: url) {
             // found image in cache
@@ -192,5 +196,24 @@ private class AsyncImageCache: NSObject, FileManagerDelegate {
             return false
         }
     }
-    
+}
+
+/// This extension is convenient for loading images asynchronously with out needing to subclass from AsyncImageView.
+extension UIImageView {
+    /// Loads the image from URL and set the imageview image.
+    func loadImage(fromURL url: URL,into imageView: UIImageView) {
+        
+        AsyncImageView().loadImageWithURL(url) { (image) in
+            guard let downloadedImage = image else {
+                return
+            }
+            
+            DispatchQueue.main.async (execute: {
+                //Ignore if image is already assigned
+                if self.image != image {
+                    self.image = downloadedImage
+                }
+            })
+        }
+    }
 }
