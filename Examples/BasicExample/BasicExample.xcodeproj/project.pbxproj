@@ -15,6 +15,8 @@
 		AC6915441DB93E5200772230 /* BasicExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6915431DB93E5200772230 /* BasicExampleTests.swift */; };
 		AC69154F1DB93E5200772230 /* BasicExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC69154E1DB93E5200772230 /* BasicExampleUITests.swift */; };
 		AC69155D1DB941CC00772230 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC69155C1DB941CC00772230 /* AsyncImageView.swift */; };
+		AC6915601DBCB0B200772230 /* StoryBoardExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC69155F1DBCB0B200772230 /* StoryBoardExampleVC.swift */; };
+		AC6915621DBCB10200772230 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6915611DBCB10200772230 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		AC69154E1DB93E5200772230 /* BasicExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicExampleUITests.swift; sourceTree = "<group>"; };
 		AC6915501DB93E5200772230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC69155C1DB941CC00772230 /* AsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncImageView.swift; path = ../../../AsyncImageView/AsyncImageView.swift; sourceTree = "<group>"; };
+		AC69155F1DBCB0B200772230 /* StoryBoardExampleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoardExampleVC.swift; sourceTree = "<group>"; };
+		AC6915611DBCB10200772230 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				AC69155E1DB941DA00772230 /* AsyncImageView */,
+				AC6915631DBCBD6C00772230 /* ViewControllers */,
 				AC69152E1DB93E5200772230 /* AppDelegate.swift */,
-				AC6915301DB93E5200772230 /* ViewController.swift */,
 				AC6915321DB93E5200772230 /* Main.storyboard */,
 				AC6915351DB93E5200772230 /* Assets.xcassets */,
 				AC6915371DB93E5200772230 /* LaunchScreen.storyboard */,
@@ -134,6 +138,16 @@
 				AC69155C1DB941CC00772230 /* AsyncImageView.swift */,
 			);
 			name = AsyncImageView;
+			sourceTree = "<group>";
+		};
+		AC6915631DBCBD6C00772230 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AC6915301DB93E5200772230 /* ViewController.swift */,
+				AC69155F1DBCB0B200772230 /* StoryBoardExampleVC.swift */,
+				AC6915611DBCB10200772230 /* DetailViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +286,8 @@
 			files = (
 				AC6915311DB93E5200772230 /* ViewController.swift in Sources */,
 				AC69152F1DB93E5200772230 /* AppDelegate.swift in Sources */,
+				AC6915621DBCB10200772230 /* DetailViewController.swift in Sources */,
+				AC6915601DBCB0B200772230 /* StoryBoardExampleVC.swift in Sources */,
 				AC69155D1DB941CC00772230 /* AsyncImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
