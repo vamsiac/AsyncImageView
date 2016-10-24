@@ -30,7 +30,7 @@ self.view.addSubView(aImageView)
 
 ## Usage 3
 Load image using completion handler. This usage is helpful if you need to load images asynchronously without subclassing UIImageView from AsyncImageView. 
-For example, UIButton's imageView can be loaded asynchronously with this usage without required any subclassing of AsyncImageView.
+For example, UIButton's imageView can be loaded asynchronously with this usage without requiring any subclassing of AsyncImageView.
 ```Swift
 let button = UIButton(type: .custom)
 button.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
@@ -40,6 +40,6 @@ self.view.addSubview(button)
 or simply
 ```Swift
 let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-imageView.loadImageAsync(fromURL: URL(string: "YOUR_IMAGE_URL")!, into: imageView)
+imageView.loadImageAsync(fromURL: URL(string: "YOUR_IMAGE_URL")!)
 self.view.addSubview(imageView)
 ```
